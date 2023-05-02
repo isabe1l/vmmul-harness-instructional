@@ -1,3 +1,5 @@
+#include <string.h>
+#include <iostream>
 const char* dgemv_desc = "Basic implementation of matrix-vector multiply.";
 
 /*
@@ -9,10 +11,12 @@ const char* dgemv_desc = "Basic implementation of matrix-vector multiply.";
 void my_dgemv(int n, double* A, double* x, double* y) {
    // insert your code here: implementation of basic matrix multiply
    int rowOffset;
-   for(int row = 0; row < n; row++){
+   for(int row = 0; row < 10; row++){
        rowOffset = row*n;
+       printf("rowOffset: %d\n", rowOffset);
        for(int col = 0; col < n; col++){
            y[row] = A[rowOffset + col] *x[row] + y[row];
+           printf("y[%d]");
        }
    }
 }

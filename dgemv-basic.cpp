@@ -17,7 +17,7 @@ void my_dgemv(int n, double* A, double* x, double* y) {
        for(int col = 0; col < n; col++){
            y[row] = A[rowOffset + col] *x[row] + y[row];
            double res = A[rowOffset + col] *x[row] + y[row];
-           printf("y[%d]: %d", row, res);
+           printf("y[%d]: %f", row, res);
        }
    }
 }

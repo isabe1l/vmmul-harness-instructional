@@ -1,0 +1,7 @@
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/rebuild_cache.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/benchmark-openmp.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/benchmark-blas.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/edit_cache.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/benchmark-vectorized.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/benchmark-basic.dir
+/global/homes/i/ifalcon/vmmul-harness-instructional/build/CMakeFiles/benchmark.dir

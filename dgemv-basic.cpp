@@ -14,10 +14,10 @@ void my_dgemv(int n, double* A, double* x, double* y) {
    for(int row = 0; row < 10; row++){
        rowOffset = row*n;
        printf("rowOffset: %d\n", rowOffset);
-       for(int col = 0; col < n; col++){
+       for(int col = 0; col < 10; col++){
            y[row] = A[rowOffset + col] *x[row] + y[row];
            double res = A[rowOffset + col] *x[row] + y[row];
-           printf("y[%d]: %f", row, res);
+           printf("y[%d]: %f\n", row, res);
        }
    }
 }

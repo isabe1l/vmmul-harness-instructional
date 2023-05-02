@@ -8,7 +8,7 @@ const char* dgemv_desc = "OpenMP dgemv.";
 /*
  * This routine performs a dgemv operation
  * Y :=  A * X + Y
- * where A is n-by-n matrix stored in row-major format, and X and Y are n by 1 vectors.
+ * where A is n-by-n matrix stored in row-major format, and X and Y are nx1 vectors.
  * On exit, A and X maintain their input values.
  */
 

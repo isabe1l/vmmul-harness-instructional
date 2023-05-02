@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
 
     // load up matrics with some random numbers
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
-    std::chrono::time_point<std::chrono::high_resolution_clock> end_time
+    std::chrono::time_point<std::chrono::high_resolution_clock> end_time;
     /* For each test size */
     for (int n: test_sizes) {
         printf("Working on problem size N=%d \n", n);

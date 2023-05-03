@@ -27,7 +27,7 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     int rowOffset;
     int col,row;
     //mutex on y[row] because that's where the data is changing
-#pragma omp parallel for reduction(+:y[row], rowOffset)
+#pragma omp parallel for collapse(2) reduction(+:y[row], rowOffset)
     for (col = 0; col < n; col++) {
         for (row = 0; row < n; row++) {
             //rowOffset from lecture slides that talked about CP3

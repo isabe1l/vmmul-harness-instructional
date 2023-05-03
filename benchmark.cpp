@@ -104,6 +104,14 @@ int main(int argc, char **argv) {
         elapsed = end_time - start_time;
 
         std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
+        size_t memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
+        std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
+
+        size_t bandwidth = memBytes / elapsed.count();
+        // 102 GiB peak bandwidth according to NERSC documentation
+        // converted GiB to bytes
+        bandwidth = bandwidth / 109521666048;
+        std::cout << "% of mem bandwidth: " << bandwidth << " " << std::endl;
 
 
         // now invoke the cblas method to compute the matrix-vector multiply
@@ -114,14 +122,7 @@ int main(int argc, char **argv) {
             printf(" Error: your answer is not the same as that computed by BLAS. \n");
 
     } // end loop over problem sizes
-    size_t memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
-    std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
 
-    size_t bandwidth = memBytes / elapsed.count();
-    // 102 GiB peak bandwidth according to NERSC documentation
-    // converted GiB to bytes
-    bandwidth = bandwidth / 109521666048;
-    std::cout << "% of mem bandwidth: " << bandwidth << " " << std::endl;
 
     return 0;
 }

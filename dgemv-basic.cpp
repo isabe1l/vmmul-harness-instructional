@@ -11,13 +11,13 @@ const char* dgemv_desc = "Basic implementation of matrix-vector multiply.";
 void my_dgemv(int n, double* A, double* x, double* y) {
    // insert your code here: implementation of basic matrix multiply
    int rowOffset;
-   doubel res;
+   double res;
    for(int row = 0; row < n; row++){
-//       rowOffset = row+n;
+       rowOffset = row*n;
 //       printf("rowOffset: %d\n", rowOffset);
        for(int col = 0; col < n; col++){
-           y[row] = A[row + col] * x[col] + y[row];
-            res = A[row + col] * x[col] + y[row];
+           y[row] = A[rowOffset + col] * x[col] + y[row];
+            res = A[rowOffset + col] * x[col] + y[row];
 //           printf("y[%d]: %f\n", row, res);
        }
        printf("y[%d]: %d", row, res);

@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
         size_t memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
         std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
 
-        double bandwidth = memBytes / elapsed;
+        double bandwidth = memBytes / elapsed.count();
         // 102 GiB peak bandwidth according to NERSC documentation
         // converted GiB to bytes
         bandwidth = bandwidth / 109521666048;

@@ -29,6 +29,7 @@ void my_dgemv(int n, double* A, double* x, double* y) {
         //rowOffset from lecture slides that talked about CP3
         rowOffset = row*n;
 //       printf("rowOffset: %d\n", rowOffset);
+#pragma omp parallel for reduction(+:y[row])
         for(int col = 0; col < n; col++){
             y[row] = A[rowOffset + col] * x[col] + y[row];
 //           printf("y[%d]: %f\n", row, y[row]);

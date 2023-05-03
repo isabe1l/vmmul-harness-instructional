@@ -17,6 +17,8 @@
 
 #include <cblas.h>
 #include <string.h>
+//global to be updated in each cpp
+
 
 // external definitions for mmul's
 extern void my_dgemv(int, double *, double *, double *);
@@ -48,7 +50,7 @@ bool check_accuracy(double *A, double *Anot, int nvalues) {
     return true;
 }
 
-
+size_t memBytes =0;
 /* The benchmarking program */
 int main(int argc, char **argv) {
     std::cout << "Description:\t" << dgemv_desc << std::endl << std::endl;
@@ -101,6 +103,8 @@ int main(int argc, char **argv) {
         end_time = std::chrono::high_resolution_clock::now();
         elapsed = end_time - start_time;
         std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
+        memBytes = sizeof(A) + sizeof(x) + sizeof(y);
+        std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
 
         // now invoke the cblas method to compute the matrix-vector multiply
         reference_dgemv(n, Acopy, Xcopy, Ycopy);

@@ -20,6 +20,6 @@ void my_dgemv(int n, double* A, double* x, double* y) {
             res = A[rowOffset + col] * x[col] + y[row];
 //           printf("y[%d]: %f\n", row, res);
        }
-       printf("y[%d]: %d", row, res);
+//       printf("y[%d]: %f\n", row, res);
    }
 }

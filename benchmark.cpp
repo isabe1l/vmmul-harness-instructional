@@ -110,8 +110,9 @@ int main(int argc, char **argv) {
         double bandwidth = memBytes / elapsed.count();
         // 102 GiB peak bandwidth according to NERSC documentation
         // converted GiB to bytes
+        //https://cplusplus.com/reference/ios/fixed/ for displaying more decimal points + precision command
         bandwidth = bandwidth / 109521666048;
-        std::cout << "% of mem bandwidth: " << bandwidth << " " << std::endl;
+        std::cout << "% of mem bandwidth: "<< std::fixed<<std::setprecision(5) << bandwidth << " " << std::endl;
 
 
         // now invoke the cblas method to compute the matrix-vector multiply

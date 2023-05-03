@@ -78,6 +78,7 @@ int main(int argc, char **argv) {
     // load up matrics with some random numbers
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time;
+    std::chrono::duration<double> elapsed;
     /* For each test size */
     for (int n: test_sizes) {
         printf("Working on problem size N=%d \n", n);
@@ -98,7 +99,8 @@ int main(int argc, char **argv) {
 
         // insert end timer code here, and print out the elapsed time for this problem size
         end_time = std::chrono::high_resolution_clock::now();
-
+        elapsed_time = end_time - start_time;
+        std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
 
         // now invoke the cblas method to compute the matrix-vector multiply
         reference_dgemv(n, Acopy, Xcopy, Ycopy);

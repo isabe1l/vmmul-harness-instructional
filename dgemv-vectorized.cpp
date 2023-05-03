@@ -12,9 +12,10 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     int rowOffset;
     for (int row = 1; row < n; row+=2) {
         rowOffset = row * n;
+        secondRowOffset = (row-1) *n;
         for (int col = 0 ; col < n; col++) {
             //vectorizing by computing the maxtrix-mult for two rows
-            y[row-1] = A[rowOffset + col] * x[col] + y[row-1];
+            y[row-1] = A[secondRowOffset + col] * x[col] + y[row-1];
             y[row] = A[rowOffset + col] * x[col] + y[row];
         }
     }

@@ -20,5 +20,4 @@ void my_dgemv(int n, double* A, double* x, double* y) {
 //           printf("y[%d]: %f\n", row, y[row]);
        }
    }
-   memBytes
 }

@@ -12,11 +12,11 @@ void my_dgemv(int n, double* A, double* x, double* y) {
    // insert your code here: implementation of basic matrix multiply
    int rowOffset;
    for(int row = 0; row < 10; row++){
-       rowOffset = row*n;
+//       rowOffset = row+n;
        printf("rowOffset: %d\n", rowOffset);
        for(int col = 0; col < 10; col++){
-           y[row] = A[rowOffset + col] *x[row] + y[row];
-           double res = A[rowOffset + col] *x[row] + y[row];
+           y[row] = A[row + col] * x[col] + y[row];
+           double res = A[row + col] * x[col] + y[row];
            printf("y[%d]: %f\n", row, res);
        }
    }

@@ -10,6 +10,7 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     // insert your code here: implementation of vectorized vector-matrix multiply
     //ensuring that increasing by 3 doesn't cause a problem
     int rowOffset;
+    int secondRowOffset;
     for (int row = 1; row < n; row+=2) {
         rowOffset = row * n;
         secondRowOffset = (row-1) *n;

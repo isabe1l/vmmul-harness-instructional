@@ -50,7 +50,7 @@ bool check_accuracy(double *A, double *Anot, int nvalues) {
     return true;
 }
 
-size_t memBytes =0;
+
 /* The benchmarking program */
 int main(int argc, char **argv) {
     std::cout << "Description:\t" << dgemv_desc << std::endl << std::endl;
@@ -102,8 +102,9 @@ int main(int argc, char **argv) {
         // insert end timer code here, and print out the elapsed time for this problem size
         end_time = std::chrono::high_resolution_clock::now();
         elapsed = end_time - start_time;
+
         std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
-        memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
+        size_t memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
         std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
 
         // now invoke the cblas method to compute the matrix-vector multiply

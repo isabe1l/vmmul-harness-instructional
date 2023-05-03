@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <omp.h>
 
-const char* dgemv_desc = "OpenMP dgemv.";
+const char *dgemv_desc = "OpenMP dgemv.";
 
 /*
  * This routine performs a dgemv operation
@@ -12,25 +12,26 @@ const char* dgemv_desc = "OpenMP dgemv.";
  * On exit, A and X maintain their input values.
  */
 
-void my_dgemv(int n, double* A, double* x, double* y) {
+void my_dgemv(int n, double *A, double *x, double *y) {
 
-   #pragma omp parallel
-   {
-      int nthreads = omp_get_num_threads();
-      int thread_id = omp_get_thread_num();
+#pragma omp parallel
+    {
+        int nthreads = omp_get_num_threads();
+        int thread_id = omp_get_thread_num();
 //      printf("Hello world: thread %d of %d checking in. \n", thread_id, nthreads);
-   }
+    }
 
-   // insert your dgemv code here. you may need to create additional parallel regions,
-   // and you may want to comment out the above parallel code block that prints out
-   // nthreads and thread_id to not taint your timings
+    // insert your dgemv code here. you may need to create additional parallel regions,
+    // and you may want to comment out the above parallel code block that prints out
+    // nthreads and thread_id to not taint your timings
     int rowOffset;
+    int col = 0, row = 0;
     //mutex on y[row] because that's where the data is changing
 #pragma omp parallel for reduction(+:y[row])
-    for(int col = 0; col < n; col++){
-        for(int row = 0; row < n; row++){
+    for (col = 0; col < n; col++) {
+        for (row = 0; row < n; row++) {
             //rowOffset from lecture slides that talked about CP3
-            rowOffset = row*n;
+            rowOffset = row * n;
 //       printf("rowOffset: %d\n", rowOffset);
             y[row] = A[rowOffset + col] * x[col] + y[row];
 //           printf("y[%d]: %f\n", row, y[row]);

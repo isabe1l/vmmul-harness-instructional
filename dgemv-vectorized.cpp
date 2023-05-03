@@ -10,12 +10,12 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     // insert your code here: implementation of vectorized vector-matrix multiply
     //ensuring that increasing by 3 doesn't cause a problem
     int rowOffset;
-    for (int row = 1; row < n; row++) {
+    for (int row = 1; row < n; row+=2) {
         rowOffset = row * n;
         for (int col = ; col < n; col++) {
             //vectorizing by computing the maxtrix-mult for two rows
-            y[row] = A[rowOffset + col] * x[col] + y[row];
             y[row-1] = A[rowOffset + col] * x[col] + y[row-1];
+            y[row] = A[rowOffset + col] * x[col] + y[row];
         }
     }
 }

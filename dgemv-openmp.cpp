@@ -23,7 +23,17 @@ void my_dgemv(int n, double* A, double* x, double* y) {
 
    // insert your dgemv code here. you may need to create additional parallel regions,
    // and you may want to comment out the above parallel code block that prints out
-   // nthreads and thread_id so as to not taint your timings
+   // nthreads and thread_id to not taint your timings
+    int rowOffset;
+    for(int row = 0; row < n; row++){
+        //rowOffset from lecture slides that talked about CP3
+        rowOffset = row*n;
+//       printf("rowOffset: %d\n", rowOffset);
+        for(int col = 0; col < n; col++){
+            y[row] = A[rowOffset + col] * x[col] + y[row];
+//           printf("y[%d]: %f\n", row, y[row]);
+        }
+    }
 
 }
 

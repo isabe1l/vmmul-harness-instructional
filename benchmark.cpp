@@ -106,15 +106,14 @@ int main(int argc, char **argv) {
         elapsed = end_time - start_time;
 
         std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
-        size_t memBytes = sizeof(A) + sizeof(X) + sizeof(Y);
+        //n*n is matrix A bc it's a nxn matrix. x and y matrices are nx1 so we can multiply by 2
+        size_t memBytes = sizeof(double) * (n*n + 2*n);
         std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
-
         double bandwidth = memBytes / elapsed.count();
         // 102 GiB peak bandwidth according to NERSC documentation
-        // converted GiB to bytes
         //https://cplusplus.com/reference/ios/fixed/ for displaying more decimal points + precision command
         bandwidth = bandwidth / 102;
-        std::cout << "% of mem bandwidth: "<< std::fixed<<std::setprecision(5) << bandwidth << "  GiB" << std::endl;
+        std::cout << "% of mem bandwidth: "<< std::fixed<<std::setprecision(5) << bandwidth << "  GiB/s" << std::endl;
 
 
         // now invoke the cblas method to compute the matrix-vector multiply

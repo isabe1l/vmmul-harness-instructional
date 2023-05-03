@@ -25,9 +25,9 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     // and you may want to comment out the above parallel code block that prints out
     // nthreads and thread_id to not taint your timings
     int rowOffset;
-    int col = 0, row = 0;
+    int col,row;
     //mutex on y[row] because that's where the data is changing
-#pragma omp parallel for reduction(+:y[row])
+#pragma omp parallel for reduction(+:y[row], rowOffset)
     for (col = 0; col < n; col++) {
         for (row = 0; row < n; row++) {
             //rowOffset from lecture slides that talked about CP3

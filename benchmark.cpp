@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
         size_t memBytes = sizeof(double) * (n*n + 2*n);
         std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
         // % bandwidth according to lec 26 slide 12
-        double bandwidth = (memBytes / elaspsed.count());
+        double bandwidth = (memBytes / elapsed.count());
         // 102 GiB peak bandwidth according to NERSC documentation
         //turning from byte to GiB and into %
         bandwidth = (bandwidth /102 /1024/1024/1024) * 100;

@@ -108,22 +108,15 @@ int main(int argc, char **argv) {
         std::cout << " Elapsed time: " << elapsed.count() << " " << std::endl;
         //n*n is matrix A bc it's a nxn matrix. x and y matrices are nx1 so we can multiply by 2
         size_t memBytes = sizeof(double) * (n*n + 2*n);
-        std::cout <<"\n" << std::endl;
         std::cout << "Bytes of Mem: " << memBytes << " " << std::endl;
-        //need to convert bytes to GiB -> bytes
-        double bandwidth = memBytes / 1024/1024/1024;
-        bandwidth = bandwidth/ elapsed.count();
+        // % bandwidth according to lec 26 slide 12
+        double bandwidth = (memBytes / elaspsed.count());
         // 102 GiB peak bandwidth according to NERSC documentation
+        //turning from byte to GiB and into %
+        bandwidth = (bandwidth /102 /1024/1024/1024) * 100;
         //https://cplusplus.com/reference/ios/fixed/ for displaying more decimal points + precision command
-        bandwidth = bandwidth / 102;
-        std::cout <<"\n" << std::endl;
         std::cout << "% of mem bandwidth: "<< std::fixed<<std::setprecision(5) << bandwidth << "  GiB/s" << std::endl;
-        std::cout <<"\n" << std::endl;
-//        double mflop = memBytes / 8;
-//         mflop = mflop / 1e-6;
-//         mflop = mflop / elapsed.count();
-//
-//        std::cout << "MFLOP/s: "<< std::fixed<<std::setprecision(5) << mflop << "MFLOP/s" << std::endl;
+
         // now invoke the cblas method to compute the matrix-vector multiply
         reference_dgemv(n, Acopy, Xcopy, Ycopy);
 

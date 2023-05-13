@@ -27,7 +27,7 @@ void my_dgemv(int n, double *A, double *x, double *y) {
     int rowOffset;
     //https://stackoverflow.com/questions/13357065/how-does-openmp-handle-nested-loops
     //used for collapse for nested loops
-#pragma omp parallel for collapse(2)
+#pragma omp parallel for
     for (int row = 0; row < n; row++) {
         //rowOffset from lecture slides that talked about CP3
         for (int col = 0; col < n; col++) {

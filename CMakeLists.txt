@@ -37,7 +37,7 @@ endif ()
 #endif ()
 
 # Common library target for benchmarking.
-add_library(benchmark OBJECT benchmark.cpp)
+add_library(benchmark OBJECT benchmark.cpp dgemv-openmp-inner.cpp dgemv-openmp-outer.cpp dgemv-openmp-nested.cpp)
 target_compile_features(benchmark PRIVATE cxx_std_11)
 
 add_executable(benchmark-basic dgemv-basic.cpp)
@@ -60,6 +60,25 @@ target_link_libraries(benchmark-openmp PRIVATE benchmark ${BLAS_LIBRARIES})
 target_link_options(benchmark-openmp PRIVATE -fopenmp)
 target_compile_features(benchmark-openmp PRIVATE c_std_11 c_restrict)
 target_compile_options(benchmark-openmp PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+
+add_executable(benchmark-openmp-outer dgemv-openmp-outer.cpp)
+target_link_libraries(benchmark-openmp PRIVATE benchmark ${BLAS_LIBRARIES})
+target_link_options(benchmark-openmp PRIVATE -fopenmp)
+target_compile_features(benchmark-openmp PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-openmp PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+
+add_executable(benchmark-openmp-inner dgemv-openmp-inner.cpp)
+target_link_libraries(benchmark-openmp PRIVATE benchmark ${BLAS_LIBRARIES})
+target_link_options(benchmark-openmp PRIVATE -fopenmp)
+target_compile_features(benchmark-openmp PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-openmp PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+
+add_executable(benchmark-openmp-nested dgemv-openmp-nested.cpp)
+target_link_libraries(benchmark-openmp PRIVATE benchmark ${BLAS_LIBRARIES})
+target_link_options(benchmark-openmp PRIVATE -fopenmp)
+target_compile_features(benchmark-openmp PRIVATE c_std_11 c_restrict)
+target_compile_options(benchmark-openmp PRIVATE -fopenmp -Wall -pedantic -march=native -O1)
+
 set(BENCHMARK "openmp")
 configure_file(job.in job-${BENCHMARK})
 

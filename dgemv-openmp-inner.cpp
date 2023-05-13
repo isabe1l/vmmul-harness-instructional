@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <omp.h>
 
-const char* dgemv_desc = "OpenMP dgemv.";
+const char *dgemv_desc = "OpenMP dgemv.";
 
 /*
  * This routine performs a dgemv operation
@@ -12,7 +12,7 @@ const char* dgemv_desc = "OpenMP dgemv.";
  * On exit, A and X maintain their input values.
  */
 
-void my_dgemv(int n, double* A, double* x, double* y) {
+void my_dgemv(int n, double *A, double *x, double *y) {
 
 #pragma omp parallel
     {
@@ -27,11 +27,11 @@ void my_dgemv(int n, double* A, double* x, double* y) {
     int rowOffset;
     //https://stackoverflow.com/questions/13357065/how-does-openmp-handle-nested-loops
     //used for collapse for nested loops
-    for(int row = 0; row < n; row++){
+    for (int row = 0; row < n; row++) {
         //rowOffset from lecture slides that talked about CP3
-            rowOffset = row*n;
+        rowOffset = row * n;
 #pragma omp parallel for reduction (+:y[row])
-        for(int col = 0; col < n; col++){
+        for (int col = 0; col < n; col++) {
 //       printf("rowOffset: %d\n", rowOffset);
             y[row] = A[rowOffset + col] * x[col] + y[row];
 //           printf("y[%d]: %f\n", row, y[row]);
